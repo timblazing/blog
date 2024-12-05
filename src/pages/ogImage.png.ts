@@ -1,5 +1,5 @@
-import ogImages from '@/ogImages'
-import config from '@/theme.config'
+import ogImages from '../ogImages'
+import config from '../theme.config'
 import { Resvg } from '@resvg/resvg-js'
 import type { APIRoute } from 'astro'
 
