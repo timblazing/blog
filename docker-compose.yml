@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  blog:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - SITE=http://localhost:3000
+    restart: unless-stopped
+    volumes:
+      - ./src/assets:/app/src/assets
+      - ./src/content:/app/src/content
+      - ./astro.config.ts:/app/astro.config.ts
+      - ./src/assets/logo.png:/app/src/assets/logo.png
+      - ./src/assets/logo.png:/src/assets/logo.png

@@ -1,11 +1,16 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from "astro/config";
 
-import mdx from '@astrojs/mdx'
-import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
-import codeHeadersPlugin from './src/plugins/codeHeadersPlugin'
-import readingTimePlugin from './src/plugins/readingTimePlugin'
-import config from './src/theme.config'
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import tailwind from "@astrojs/tailwind";
+import codeHeadersPlugin from "./src/plugins/codeHeadersPlugin";
+import readingTimePlugin from "./src/plugins/readingTimePlugin";
+import config from "./src/theme.config";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   site: config.site,
@@ -14,8 +19,22 @@ export default defineConfig({
     shikiConfig: {
       themes: config.shikiThemes,
       wrap: true,
-      transformers: [codeHeadersPlugin]
+      transformers: [codeHeadersPlugin],
     },
-    remarkPlugins: [readingTimePlugin]
-  }
-})
+    remarkPlugins: [readingTimePlugin],
+  },
+  vite: {
+    resolve: {
+      alias: {
+        "@/assets": path.resolve(__dirname, "./src/assets"),
+        "src/assets": path.resolve(__dirname, "./src/assets"),
+        "/src/assets": path.resolve(__dirname, "./src/assets"),
+      },
+    },
+    build: {
+      rollupOptions: {
+        external: [/^src\/assets\/.*/, /^\/src\/assets\/.*/],
+      },
+    },
+  },
+});
