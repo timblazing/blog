@@ -3,6 +3,6 @@ services:
   blog:
     build: .
     ports:
-      - "3009:3009" # Map host port 3009 to container port 3009
+      - "3009:3009"
     volumes:
       - ./blog:/app/blog

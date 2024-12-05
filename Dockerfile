@@ -16,8 +16,6 @@ FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 3009
 EXPOSE 3009 
 
-# Explicitly set the listening port in the Nginx config
 RUN sed -i 's/listen       80;/listen       3009;/' /etc/nginx/conf.d/default.conf
