@@ -1,7 +1,7 @@
-import type { ShikiConfig } from 'astro'
-import type { SetOptional } from 'type-fest'
+import type { ShikiConfig } from "astro";
+import type { SetOptional } from "type-fest";
 
-export type Icon = `tabler--${string}`
+export type Icon = `tabler--${string}`;
 
 export interface ResolvedTag {
   tag: string

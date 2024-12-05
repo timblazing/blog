@@ -1,7 +1,7 @@
-import { defineThemeConfig } from './types'
+import { defineThemeConfig } from "/app/src/types.ts";
 
 export default defineThemeConfig({
-  site: 'https://timblazing.site',
+  site: "https://timblazing.site",
   title: 'TimBlazing',
   description: 'Blog posts and projects',
   author: 'TimBlazing',

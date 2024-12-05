@@ -1,5 +1,5 @@
-import config from '@/theme.config'
-import { getPosts } from '@/util/posts'
+import config from '../theme.config'
+import { getPosts } from '../util/posts'
 import rss from '@astrojs/rss'
 
 export async function GET() {

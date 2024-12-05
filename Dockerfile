@@ -20,6 +20,10 @@ COPY . .
 COPY ./src/plugins/codeHeadersPlugin.ts ./src/plugins/codeHeadersPlugin.ts
 COPY ./src/plugins/readingTimePlugin.ts ./src/plugins/readingTimePlugin.ts
 COPY ./src/theme.config.ts ./src/theme.config.ts
+COPY ./src/types.ts ./src/types.ts
+COPY ./src/middleware.ts ./src/middleware.ts
+COPY ./src/pages ./src/pages
+COPY ./src/util ./src/util
 
 # Build the Astro site
 RUN pnpm build
@@ -39,6 +43,10 @@ COPY --from=base /app/src/assets ./src/assets
 COPY --from=base /app/src/content ./src/content
 COPY --from=base /app/src/plugins ./src/plugins
 COPY --from=base /app/src/theme.config.ts ./src/theme.config.ts
+COPY --from=base /app/src/types.ts ./src/types.ts
+COPY --from=base /app/src/middleware.ts ./src/middleware.ts
+COPY --from=base /app/src/pages ./src/pages
+COPY --from=base /app/src/util ./src/util
 COPY --from=base /app/package.json ./package.json
 COPY --from=base /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=base /app/astro.config.ts ./astro.config.ts

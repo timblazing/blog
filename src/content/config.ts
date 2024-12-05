@@ -1,4 +1,4 @@
-import config from '@/theme.config'
+import config from '../theme.config'
 import { defineCollection, z } from 'astro:content'
 
 const posts = defineCollection({
