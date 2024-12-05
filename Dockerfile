@@ -24,6 +24,7 @@ COPY ./src/types.ts ./src/types.ts
 COPY ./src/middleware.ts ./src/middleware.ts
 COPY ./src/pages ./src/pages
 COPY ./src/util ./src/util
+COPY ./src/ogImages ./src/ogImages
 
 # Build the Astro site
 RUN pnpm build
@@ -47,6 +48,7 @@ COPY --from=base /app/src/types.ts ./src/types.ts
 COPY --from=base /app/src/middleware.ts ./src/middleware.ts
 COPY --from=base /app/src/pages ./src/pages
 COPY --from=base /app/src/util ./src/util
+COPY --from=base /app/src/ogImages ./src/ogImages
 COPY --from=base /app/package.json ./package.json
 COPY --from=base /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=base /app/astro.config.ts ./astro.config.ts

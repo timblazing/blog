@@ -34,6 +34,7 @@ export default defineConfig({
         "/app/src": path.resolve(__dirname, "./src"),
         "@/theme.config": path.resolve(__dirname, "./src/theme.config.ts"),
         "@/util": path.resolve(__dirname, "./src/util"),
+        "@/ogImages": path.resolve(__dirname, "./src/ogImages"),
       },
     },
     build: {
