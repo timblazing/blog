@@ -1,21 +1,12 @@
-FROM node:18-alpine as builder
-
+# Base stage for building the static files
+FROM node:lts AS base
 WORKDIR /app
-
 COPY package*.json ./
-
-RUN npm install -g pnpm
-
-RUN pnpm install
-
+RUN npm install
 COPY . .
+RUN npm run build
 
-RUN pnpm run build
-
-FROM nginx:alpine
-
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-EXPOSE 3009 
-
-RUN sed -i 's/listen       80;/listen       3009;/' /etc/nginx/conf.d/default.conf
+# Runtime stage for serving the application
+FROM nginx:mainline-alpine-slim AS runtime
+COPY --from=base ./app/dist /usr/share/nginx/html
+EXPOSE 80

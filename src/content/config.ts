@@ -1,34 +1,36 @@
-import config from '../theme.config'
-import { defineCollection, z } from 'astro:content'
+import { SITE } from "@config";
+import { glob } from "astro/loaders";
+import { defineCollection, z } from "astro:content";
 
-const posts = defineCollection({
-  type: 'content',
+const blog = defineCollection({
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: ({ image }) =>
     z.object({
+      author: z.string().default(SITE.author),
+      pubDatetime: z.date(),
+      modDatetime: z.date().optional().nullable(),
       title: z.string(),
-      author: z.string().default(config.author),
+      featured: z.boolean().optional(),
+      draft: z.boolean().optional(),
+      tags: z.array(z.string()).default(["others"]),
+      ogImage: image()
+        .refine(img => img.width >= 1200 && img.height >= 630, {
+          message: "OpenGraph image must be at least 1200 X 630 pixels!",
+        })
+        .or(z.string())
+        .optional(),
       description: z.string(),
-      publishedDate: z.date(),
-      draft: z.boolean().optional().default(false),
       canonicalURL: z.string().optional(),
-      openGraphImage: image().or(z.string()).optional(),
-      tags: z.array(z.string()).default([]),
-      showToC: z.boolean().optional().default(true),
-      previewImage: image().or(z.string()).optional()
-    })
-})
+      editPost: z
+        .object({
+          disabled: z.boolean().optional(),
+          url: z.string().optional(),
+          text: z.string().optional(),
+          appendFilePath: z.boolean().optional(),
+        })
+        .optional(),
+    }),
+});
 
-const projects = defineCollection({
-  type: 'content',
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      url: z.string().optional(),
-      startDate: z.date(),
-      endDate: z.date().optional().nullable(),
-      tags: z.array(z.string()).default([]),
-      previewImage: image().or(z.string()).optional()
-    })
-})
-
-export const collections = { posts, projects }
+export const collections = { blog };

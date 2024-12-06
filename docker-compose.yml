@@ -1,8 +1,11 @@
-version: "3.9"
+version: '3'
+
 services:
-  blog:
-    build: .
+  app:
+    image: node:20
     ports:
-      - "3009:3009"
+      - 4321:4321
+    working_dir: /app
+    command: npm run dev -- --host 0.0.0.0
     volumes:
-      - ./blog:/app/blog
+      - ./:/app

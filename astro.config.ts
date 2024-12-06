@@ -1,44 +1,44 @@
 import { defineConfig } from "astro/config";
-
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import codeHeadersPlugin from "./src/plugins/codeHeadersPlugin";
-import readingTimePlugin from "./src/plugins/readingTimePlugin";
-import config from "./src/theme.config";
-import type { ThemeConfig } from "./src/types";
-import { fileURLToPath } from "url";
-import path from "path";
+import react from "@astrojs/react";
+import remarkToc from "remark-toc";
+import remarkCollapse from "remark-collapse";
+import sitemap from "@astrojs/sitemap";
+import { SITE } from "./src/config";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+// https://astro.build/config
 export default defineConfig({
-  site: (config as ThemeConfig).site,
-  integrations: [tailwind(), mdx(), sitemap()],
+  site: SITE.website,
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    react(),
+    sitemap(),
+  ],
   markdown: {
+    remarkPlugins: [
+      remarkToc,
+      [
+        remarkCollapse,
+        {
+          test: "Table of contents",
+        },
+      ],
+    ],
     shikiConfig: {
-      themes: (config as ThemeConfig).shikiThemes,
+      // For more themes, visit https://shiki.style/themes
+      themes: { light: "min-light", dark: "night-owl" },
       wrap: true,
-      transformers: [codeHeadersPlugin],
     },
-    remarkPlugins: [readingTimePlugin],
   },
   vite: {
-    resolve: {
-      alias: {
-        "@/assets": path.resolve(__dirname, "./src/assets"),
-        "src/assets": path.resolve(__dirname, "./src/assets"),
-        "/src/assets": path.resolve(__dirname, "./src/assets"),
-        "src": path.resolve(__dirname, "./src"),
-        "/app/src": path.resolve(__dirname, "./src"),
-        "@/theme.config": path.resolve(__dirname, "./src/theme.config.ts"),
-      },
+    optimizeDeps: {
+      exclude: ["@resvg/resvg-js"],
     },
-    build: {
-      rollupOptions: {
-        external: [/^src\/assets\/.*/, /^\/src\/assets\/.*/],
-      },
-    },
+  },
+  scopedStyleStrategy: "where",
+  experimental: {
+    contentLayer: true,
   },
 });
