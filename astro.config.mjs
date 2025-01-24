@@ -8,8 +8,14 @@ import pagefind from "astro-pagefind";
 import expressiveCode from "astro-expressive-code";
 
 export default defineConfig({
+  site: "https://timblazing.site",
+  base: "/",
   integrations: [
-    astroExpressiveCode({
+    tailwind(), 
+    sitemap(), 
+    mdx(), 
+    pagefind(),
+    expressiveCode({
       themes: ['aurora-x'],
       styleOverrides: {
         borderRadius: '0.5rem',
@@ -17,11 +23,8 @@ export default defineConfig({
           shadowColor: '#124',
         },
       },
-    }),
+    })
   ],
-  site: "https://timblazing.site",
-  base: "/",
-  integrations: [tailwind(), sitemap(), mdx(), pagefind(), expressiveCode()],
   markdown: {
     shikiConfig: {
       theme: "css-variables",
