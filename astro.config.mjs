@@ -5,11 +5,23 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 
-// https://astro.build/config
+import expressiveCode from "astro-expressive-code";
+
 export default defineConfig({
+  integrations: [
+    astroExpressiveCode({
+      themes: ['aurora-x'],
+      styleOverrides: {
+        borderRadius: '0.5rem',
+        frames: {
+          shadowColor: '#124',
+        },
+      },
+    }),
+  ],
   site: "https://timblazing.site",
   base: "/",
-  integrations: [tailwind(), sitemap(), mdx(), pagefind()],
+  integrations: [tailwind(), sitemap(), mdx(), pagefind(), expressiveCode()],
   markdown: {
     shikiConfig: {
       theme: "css-variables",
