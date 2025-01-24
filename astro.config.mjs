@@ -11,10 +11,7 @@ export default defineConfig({
   site: "https://timblazing.site",
   base: "/",
   integrations: [
-    tailwind(), 
-    sitemap(), 
-    mdx(), 
-    pagefind(),
+    tailwind(),
     expressiveCode({
       themes: ['aurora-x'],
       styleOverrides: {
@@ -23,7 +20,10 @@ export default defineConfig({
           shadowColor: '#124',
         },
       },
-    })
+    }),
+    mdx(),
+    sitemap(),
+    pagefind()
   ],
   markdown: {
     shikiConfig: {
