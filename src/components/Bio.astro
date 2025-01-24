@@ -1,0 +1,29 @@
+---
+import TextLink from "@components/TextLink.astro";
+import { resolvePath } from "@lib/utils";
+
+type Props = {
+  small?: boolean;
+};
+
+const { small } = Astro.props;
+---
+
+<div class="space-y-4" style={small ? "font-size: 0.875rem" : ""}>
+  <p>
+    Welcome to my portfolio + blog! 👋
+  </p>
+
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipiscing elit fusce dui semper id consequat
+    felis euismod, imperdiet penatibus dictumst nam porta tincidunt venenatis aptent 
+    iaculis dis auctor est volutpat.
+  </p>
+
+  <p>
+    Tempus rhoncus urna inceptos ullamcorper id auctor eleifend himenaeos maecenas 
+    libero, montes viverra fermentum mi lacinia mauris malesuada.
+  </p>
+
+  <p>Enjoy!</p>
+</div>
