@@ -1,6 +1,6 @@
 services:
-  astro-blog:
-    container_name: astro-blog
+  blog:
+    container_name: blog
     build: .
     ports:
       - "3004:80"
