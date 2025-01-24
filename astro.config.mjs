@@ -19,6 +19,13 @@ export default defineConfig({
         frames: {
           shadowColor: '#124',
         },
+        codeBlock: {
+          width: '100%',
+          maxWidth: 'calc(100vw - 2rem)',
+          overflowX: 'auto',
+          wordBreak: 'break-word',
+          whiteSpace: 'pre-wrap'
+        }
       },
     }),
     mdx(),
