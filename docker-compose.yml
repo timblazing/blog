@@ -3,7 +3,7 @@ services:
     container_name: astro-blog
     build: .
     ports:
-      - "80:80"
+      - "3004:80"
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:80"]
       interval: 30s
