@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 
 export default defineConfig({
-  site: "https://timblazing.site",
+  site: "https://blasinga.me",
   base: "/",
   integrations: [
     tailwind(),
