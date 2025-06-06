@@ -13,10 +13,10 @@ export type GlobalSite = {
 };
 
 export const GLOBAL: GlobalSite = {
-  title: "Timothy Blasingame",
+  title: "Clay Blasingame",
   description: "a blog+portfolio, using the Astro Milidev theme",
-  author: "Timothy Blasingame",
-  authorPhotoSrc: "/timothy.png",
+  author: "Timothy (Clay) Blasingame",
+  authorPhotoSrc: "/clay.png",
   logo: {
     darkThemeSrc: "/logo/logo_dark.png",
     lightThemeSrc: "/logo/logo_light.png",
